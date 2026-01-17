@@ -14,12 +14,12 @@ export function HomePage() {
     const [cart, setCart] = useState([]);
 
     useEffect(()=>{   //the <StrictMode> in main.jsx makes useEffect run twice
-        axios.get('http://localhost:3000/api/products')      //this is an easier way instead of fetch .. .then response.json().then
+        axios.get('/api/products')      //this is an easier way instead of fetch .. .then response.json().then
             .then((response)=>{
                 setProducts(response.data); 
             });
 
-        axios.get('http://localhost:3000/api/cart-items')
+        axios.get('/api/cart-items')
             .then((response)=>{
                 setCart(response.data);
             });
