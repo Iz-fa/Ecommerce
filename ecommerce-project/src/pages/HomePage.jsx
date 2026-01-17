@@ -11,12 +11,19 @@ import './HomePage.css'
 
 export function HomePage() {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(()=>{   //the <StrictMode> in main.jsx makes useEffect run twice
         axios.get('http://localhost:3000/api/products')      //this is an easier way instead of fetch .. .then response.json().then
-        .then((response)=>{
-            setProducts(response.data); 
-        });
+            .then((response)=>{
+                setProducts(response.data); 
+            });
+
+        axios.get('http://localhost:3000/api/cart-items')
+            .then((response)=>{
+                setCart(response.data);
+            });
+
     }, []);
     
 
@@ -24,7 +31,7 @@ export function HomePage() {
         <>
             <title>Ecommerce Project</title>
 
-            <Header />
+            <Header cart ={cart}/>
 
             <div className="home-page">
                 <div className="products-grid">
