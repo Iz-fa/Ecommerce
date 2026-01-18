@@ -1,4 +1,5 @@
 import {formatMoney} from '../../utils/money';
+import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
 
 export function ProductsGrid({products}) {
     return (
@@ -45,7 +46,7 @@ export function ProductsGrid({products}) {
                         <div className="product-spacer"></div>
 
                         <div className="added-to-cart">
-                            <img src="images/icons/checkmark.png" />
+                            <img src={CheckmarkIcon} />
                             Added
                         </div>
 
