@@ -13,12 +13,21 @@ import './HomePage.css'
 export function HomePage({cart}) {
     const [products, setProducts] = useState([]);
     
+    
+    useEffect(()=>{   
+        //the <StrictMode> in main.jsx makes useEffect run twice
 
-    useEffect(()=>{   //the <StrictMode> in main.jsx makes useEffect run twice
-        axios.get('/api/products')      //this is an easier way instead of fetch .. .then response.json().then
-            .then((response)=>{
-                setProducts(response.data); 
-            });
+        //useEffect cannot return a promise(it only returns nothing or a cleanup function)
+        //that is why we made a const being an async function and called that function
+
+        const fetchHomeData = async ()=>{ 
+            const response = await axios.get('/api/products');      
+            setProducts(response.data); 
+            
+            //axios is an easier way instead of fetch .. .then response.json().then
+        };
+
+        fetchHomeData();
     }, []);
     
 
