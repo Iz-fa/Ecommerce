@@ -1,7 +1,8 @@
 // This is an Integration test
 
 import { it, expect, describe, vi, beforeEach } from 'vitest'; //vi lets us create a mock (a fake function that doesnt do anything)
-import { render, screen } from '@testing-library/react'; //render: renders a component in a fake webpage(for testing), screen: lets us check the fake webpage
+import { render, screen } from '@testing-library/react'; // render: renders a component in a fake webpage(for testing)
+                                                         // screen: lets us check the fake webpage
 import userEvent from '@testing-library/user-event'; // userEvent lets us simulate events(like clicking a button)
 import axios from 'axios';
 import { Product } from './Product';

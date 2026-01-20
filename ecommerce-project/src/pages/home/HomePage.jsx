@@ -24,7 +24,8 @@ export function HomePage({cart, loadCart}) {
 
         const fetchHomeData = async ()=>{ 
             const urlPath = search ? `/api/products?search=${search}` : '/api/products';
-            const response = await axios.get(urlPath);      
+            const response = await axios.get(urlPath); 
+            console.log(response);     
             setProducts(response.data); 
             
             //axios is an easier way instead of fetch .. .then response.json().then
