@@ -6,6 +6,7 @@ import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
 
 export function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
+    const [addedMessage, setAddedMessage] = useState(false);
 
     const addToCart = async () => {
         // .post creates data in the backend
@@ -14,6 +15,11 @@ export function Product({ product, loadCart }) {
             quantity // same as writing quantity: quantity
         });
         await loadCart();
+
+        setAddedMessage(true);
+        setTimeout(()=>{
+            setAddedMessage(false);
+        },2000);
     };
     const selectQuantity = (event) => {    //This is a controlled input
         const quantitySelected = Number(event.target.value); //from string to number
@@ -61,7 +67,7 @@ export function Product({ product, loadCart }) {
 
             <div className="product-spacer"></div>
 
-            <div className="added-to-cart">
+            <div className="added-to-cart" style={{opacity: addedMessage? 1: 0}}>
                 <img src={CheckmarkIcon} />
                 Added
             </div>
