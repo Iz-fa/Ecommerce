@@ -1,5 +1,6 @@
 import axios from 'axios'; //cleaner way to make requests to the backend
 import {useEffect, useState} from 'react';
+import {useSearchParams} from 'react-router';
 import { Header } from '../../components/Header';
 import {ProductsGrid} from './ProductsGrid';
 import './HomePage.css'
@@ -12,8 +13,9 @@ import './HomePage.css'
 
 export function HomePage({cart, loadCart}) {
     const [products, setProducts] = useState([]);
-    
-    
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search');
+
     useEffect(()=>{   
         //the <StrictMode> in main.jsx makes useEffect run twice
 
@@ -21,14 +23,15 @@ export function HomePage({cart, loadCart}) {
         //that is why we made a const being an async function and called that function
 
         const fetchHomeData = async ()=>{ 
-            const response = await axios.get('/api/products');      
+            const urlPath = search ? `/api/products?search=${search}` : '/api/products';
+            const response = await axios.get(urlPath);      
             setProducts(response.data); 
             
             //axios is an easier way instead of fetch .. .then response.json().then
         };
 
         fetchHomeData();
-    }, []);
+    }, [search]);
     
 
     return (        //The link bellow is the favicon(icon of the page)
