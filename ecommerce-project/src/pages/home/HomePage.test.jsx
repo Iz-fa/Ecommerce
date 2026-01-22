@@ -1,25 +1,25 @@
 import { it, expect, describe, vi, beforeEach } from 'vitest';
-import { render, screen, within } from '@testing-library/react'; 
+import { render, screen, within } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router';
+import axios from 'axios';
+import { HomePage } from './HomePage';
 
 // MemoryRouter is a router specificaly for testing
 // We are using it because Header.jsx is using 'react-router'.
 // The entire App.jsx is in a <BrowserRouter> so we didnt need to wrap <Header> with a router in other components
-import {MemoryRouter} from 'react-router';
-
-import userEvent from '@testing-library/user-event';
-import axios from 'axios';
-import { HomePage } from './HomePage';
 
 vi.mock('axios');
 
 describe('HomePage component', () => {
     let loadCart;
+    let user;
 
     beforeEach(() => {
         loadCart = vi.fn();
 
         //Mocking the implementation means this fake fucntion will run instead of the real one when axios.get is called 
-        
+
         axios.get.mockImplementation(async (urlPath) => {
             if (urlPath === '/api/products') {
 
@@ -53,27 +53,63 @@ describe('HomePage component', () => {
                 };
             }
         });
+        user = userEvent.setup();
     });
 
     it('displays the products correct', async () => {
         render(
             <MemoryRouter>
                 <HomePage cart={[]} loadCart={loadCart} />
-            </MemoryRouter>           
+            </MemoryRouter>
         );
 
         //getAllByTestId is syncronous (it doesnt wait for elements to appear) unlike findAllByTestId    
-         const productContainers = await screen.findAllByTestId('product-container');
+        const productContainers = await screen.findAllByTestId('product-container');
 
-         expect(productContainers.length).toBe(2);
-         
-         expect(
+        expect(productContainers.length).toBe(2);
+
+        expect(
             within(productContainers[0]).getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')
-         ).toBeInTheDocument();
+        ).toBeInTheDocument();
 
-         expect(
+        expect(
             within(productContainers[1]).getByText('Intermediate Size Basketball')
-         ).toBeInTheDocument();
-         
+        ).toBeInTheDocument();
+
     });
+
+    it('add to cart buttons work', async () => {
+        render(
+            <MemoryRouter>
+                <HomePage cart={[]} loadCart={loadCart} />
+            </MemoryRouter>
+        );
+        const productContainers = await screen.findAllByTestId('product-container');
+
+        const quantitySelector1 = within(productContainers[0]).getByTestId('product-quantity-container');
+        await user.selectOptions(quantitySelector1 , '2');
+
+        const addToCartButton1 = within(productContainers[0]).getByTestId('add-to-cart-button');
+        await user.click(addToCartButton1);
+
+        const quantitySelector2 = within(productContainers[1]).getByTestId('product-quantity-container');
+        await user.selectOptions(quantitySelector2, '3');
+
+        const addToCartButton2 = within(productContainers[1]).getByTestId('add-to-cart-button');
+        await user.click(addToCartButton2);
+
+        expect(axios.post).toHaveBeenNthCalledWith(1, '/api/cart-items', {
+            productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+            quantity: 2
+        });
+
+        expect(axios.post).toHaveBeenNthCalledWith(2, '/api/cart-items', {
+            productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+            quantity: 3
+        });
+
+        expect(loadCart).toHaveBeenCalledTimes(2);
+    });
+
+
 });
