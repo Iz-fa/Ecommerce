@@ -21,7 +21,6 @@ The project focuses on frontend architecture, API integration, testing, and auto
 👉 http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/
 
 ## Cloning the repository
-
 Make sure you have the following installed on your machine:
 
 - [Node.js](https://nodejs.org/) (v16 or higher recommended)
