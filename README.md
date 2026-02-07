@@ -18,7 +18,7 @@ The project focuses on frontend architecture, API integration, testing, and auto
 - CI/CD pipeline for build and deployment
 
 ## Live Demo
-👉 http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/
+👉 [View Live](http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/)
 
 ## Cloning the repository
 Make sure you have the following installed on your machine:
