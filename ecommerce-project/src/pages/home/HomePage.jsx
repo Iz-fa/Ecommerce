@@ -38,7 +38,7 @@ export function HomePage({cart, loadCart}) {
     return (        //The link bellow is the favicon(icon of the page)
         <>
             <link rel="icon" type="image/png" href="home-favicon.png" />
-            <title>Ecommerce Project</title>
+            <title>E-Commerce</title>
 
             <Header cart ={cart}/>
 
