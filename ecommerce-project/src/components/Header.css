@@ -43,19 +43,9 @@
   margin-top: 1px;
 }
 
-.header .mobile-logo {
-  display: none;
-}
-
-@media (max-width: 675px) {
-  .header .logo {
-    display: none;
-  }
-
-  .header .mobile-logo {
-    display: block;
-    height: 26px;
-    margin-top: 1px;
+@media (max-width: 575px) {
+  .header .left-section {
+    width: auto;
   }
 }
 

@@ -9,6 +9,7 @@ export default defineConfig({
     },
   })],
   server: {
+    host: true,
     proxy: {
       '/api': {  //this means if the url starts with /api, it will automaticaly go to the target
         target: 'http://localhost:3000'
