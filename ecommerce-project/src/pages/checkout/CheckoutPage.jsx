@@ -29,7 +29,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
     return (                 
         <>
-            <link rel="icon" type="image/svg+xml" href="cart-favicon.png" /> 
+            <link rel="icon" type="image/png" href="cart-favicon.png" /> 
             <title>Checkout</title>
 
             <CheckoutHeader cart={cart}/>
