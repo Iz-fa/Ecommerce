@@ -66,7 +66,7 @@ describe('Product component', () => {
 
         //even though mocks dont do anything, we can still make sure we called them and gave them the correct values
         expect(axios.post).toHaveBeenCalledWith(
-            'https://ecommerce-backend-tawny-rho.vercel.app/api/cart-items',
+            'https://e-commerce-backend-xwcy.onrender.com/api/cart-items',
             {
                 productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
                 quantity: 1
@@ -91,7 +91,7 @@ describe('Product component', () => {
         await user.click(addToCartButton);
 
         expect(axios.post).toHaveBeenCalledWith(
-            'https://ecommerce-backend-tawny-rho.vercel.app/api/cart-items',
+            'https://e-commerce-backend-xwcy.onrender.com/api/cart-items',
             {
                 productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
                 quantity: 3

@@ -6,7 +6,7 @@ export function PaymentSummary({paymentSummary, loadCart}) {
     const navigate = useNavigate();
 
     const createOrder = async()=>{
-        await axios.post('https://ecommerce-backend-tawny-rho.vercel.app/api/orders');
+        await axios.post('https://e-commerce-backend-xwcy.onrender.com/api/orders');
         await loadCart();
         navigate('/orders');
     };

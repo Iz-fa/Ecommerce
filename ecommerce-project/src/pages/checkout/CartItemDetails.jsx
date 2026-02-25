@@ -8,7 +8,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
 
     const updateQuantity = async () => {
         if (isUpdatingQuantity) {
-            await axios.put(`https://ecommerce-backend-tawny-rho.vercel.app/api/cart-items/${cartItem.productId}`, {
+            await axios.put(`https://e-commerce-backend-xwcy.onrender.com/api/cart-items/${cartItem.productId}`, {
                 quantity: Number(quantity)
             });
             await loadCart();
@@ -19,7 +19,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
     };
 
     const deleteCartItem = async () => {
-        await axios.delete(`https://ecommerce-backend-tawny-rho.vercel.app/api/cart-items/${cartItem.productId}`);
+        await axios.delete(`https://e-commerce-backend-xwcy.onrender.com/api/cart-items/${cartItem.productId}`);
 
         await loadCart();
     };
@@ -43,7 +43,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
     return (
         <>
             <img className="product-image"
-                src={`https://ecommerce-backend-tawny-rho.vercel.app/${cartItem.product.image}`} />
+                src={`https://e-commerce-backend-xwcy.onrender.com/${cartItem.product.image}`} />
 
             <div className="cart-item-details">
                 <div className="product-name">
