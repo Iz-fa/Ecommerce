@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router';
 import { Header } from '../../components/Header';
 import {ProductsGrid} from './ProductsGrid';
+import LoadingSpinner from '../../assets/images/loading-spinner.gif';
 import './HomePage.css'
 
 // Backend stores the data(normaly on a different computer) so the user's computer doesnt have to store all the
@@ -13,7 +14,7 @@ import './HomePage.css'
 
 export function HomePage({cart, loadCart}) {
     const [products, setProducts] = useState([]);
-    const [loading, setloading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const search = searchParams.get('search');
 
@@ -25,9 +26,18 @@ export function HomePage({cart, loadCart}) {
 
         const fetchHomeData = async ()=>{ 
             const urlPath = search ? `https://e-commerce-backend-xwcy.onrender.com/api/products?search=${search}` : 'https://e-commerce-backend-xwcy.onrender.com/api/products';
-            const response = await axios.get(urlPath);  
-            setProducts(response.data); 
-            setloading(false);
+            
+            try{
+                const response = await axios.get(urlPath);  
+                setProducts(response.data); 
+        
+            } catch(err) {
+                console.error(err);
+                alert("Failed to load products! Please try again")
+            } finally {
+                setLoading(false);
+            }
+            
             
             //axios is an easier way instead of fetch .. .then response.json().then
         };
@@ -35,19 +45,26 @@ export function HomePage({cart, loadCart}) {
         fetchHomeData();
     }, [search]);
     
-    if(loading){
-        return <p>Please wait, the backend is launching...</p>;
-    }
 
     return (        //The link bellow is the favicon(icon of the page)
         <>
             <link rel="icon" type="image/png" href="home-favicon.png" />
             <title>E-Commerce</title>
 
-            <Header cart ={cart}/>            
-            <div className="home-page">
-                <ProductsGrid products = {products} loadCart = {loadCart}/>
-            </div>
+            <Header cart ={cart}/> 
+            {loading ? 
+                <div className="loading-container">
+                    <p className="loading-text">
+                        Please wait, the backend server needs some time to wake up due to inactivity...
+                    </p> 
+                    <img className="spinner" src={LoadingSpinner} alt="Loading..." />
+                </div>
+                :
+                <div className="home-page">
+                    <ProductsGrid products = {products} loadCart = {loadCart}/>
+                </div>
+            }           
+            
         </>
     );
 }
