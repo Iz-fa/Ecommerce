@@ -13,6 +13,7 @@ import './HomePage.css'
 
 export function HomePage({cart, loadCart}) {
     const [products, setProducts] = useState([]);
+    const [loading, setloading] = useState(true);
     const [searchParams] = useSearchParams();
     const search = searchParams.get('search');
 
@@ -25,8 +26,8 @@ export function HomePage({cart, loadCart}) {
         const fetchHomeData = async ()=>{ 
             const urlPath = search ? `https://e-commerce-backend-xwcy.onrender.com/api/products?search=${search}` : 'https://e-commerce-backend-xwcy.onrender.com/api/products';
             const response = await axios.get(urlPath);  
-            console.log("please wait for data to load from backend"); 
             setProducts(response.data); 
+            setloading(false);
             
             //axios is an easier way instead of fetch .. .then response.json().then
         };
@@ -34,14 +35,16 @@ export function HomePage({cart, loadCart}) {
         fetchHomeData();
     }, [search]);
     
+    if(loading){
+        return <p>Please wait, the backend is launching...</p>;
+    }
 
     return (        //The link bellow is the favicon(icon of the page)
         <>
             <link rel="icon" type="image/png" href="home-favicon.png" />
             <title>E-Commerce</title>
 
-            <Header cart ={cart}/>
-
+            <Header cart ={cart}/>            
             <div className="home-page">
                 <ProductsGrid products = {products} loadCart = {loadCart}/>
             </div>
