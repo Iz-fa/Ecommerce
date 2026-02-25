@@ -11,7 +11,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
     useEffect(()=>{
         const fetchCheckoutData= async()=>{
-            const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
+            const response = await axios.get('http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/delivery-options?expand=estimatedDeliveryTime');
             setDeliveryOptions(response.data);
         };
 
@@ -20,7 +20,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
     useEffect(() => {
         const fetchPaymentSummary = async()=>{
-            const response = await axios.get('/api/payment-summary');
+            const response = await axios.get('http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/payment-summary');
             setPaymentSummary(response.data);
         };
 

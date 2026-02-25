@@ -9,7 +9,7 @@ export function OrderDetailsGrid({order, loadCart}) {
         <div className="order-details-grid">
             {order.products.map((orderProduct) => {
                 const addToCart = async()=>{
-                    await axios.post('/api/cart-items',{
+                    await axios.post('http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items',{
                         productId: orderProduct.productId,
                         quantity: 1
                     });
@@ -19,7 +19,7 @@ export function OrderDetailsGrid({order, loadCart}) {
                 return (
                     <Fragment key={orderProduct.product.id}>
                         <div className="product-image-container">
-                            <img src={orderProduct.product.image} />
+                            <img src={`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/${orderProduct.product.image}`} />
                         </div>
 
                         <div className="product-details">

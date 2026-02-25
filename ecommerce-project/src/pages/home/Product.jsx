@@ -10,7 +10,7 @@ export function Product({ product, loadCart }) {
 
     const addToCart = async () => {
         // .post creates data in the backend
-        await axios.post('/api/cart-items', {  //this object is called request body
+        await axios.post('http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items', {  //this object is called request body
             productId: product.id,
             quantity // same as writing quantity: quantity
         });
@@ -26,14 +26,13 @@ export function Product({ product, loadCart }) {
         setQuantity(quantitySelected);
     };
 
-
     return (
         <div className="product-container"
             data-testid="product-container">
             <div className="product-image-container">
                 <img className="product-image"
                     data-testid="product-image"
-                    src={product.image} />
+                    src={`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/${product.image}`} />
             </div>
 
             <div className="product-name limit-text-to-2-lines">
@@ -43,7 +42,7 @@ export function Product({ product, loadCart }) {
             <div className="product-rating-container">
                 <img className="product-rating-stars"
                     data-testid="product-rating-stars"
-                    src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
+                    src={`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/images/ratings/rating-${product.rating.stars * 10}.png`} />
                 <div className="product-rating-count link-primary">
                     {product.rating.count}
                 </div>

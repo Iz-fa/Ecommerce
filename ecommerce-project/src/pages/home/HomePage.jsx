@@ -23,9 +23,8 @@ export function HomePage({cart, loadCart}) {
         //that is why we made a const being an async function and called that function
 
         const fetchHomeData = async ()=>{ 
-            const urlPath = search ? `/api/products?search=${search}` : '/api/products';
-            const response = await axios.get(urlPath); 
-            console.log(response);     
+            const urlPath = search ? `http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/products?search=${search}` : 'http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/products';
+            const response = await axios.get(urlPath);   
             setProducts(response.data); 
             
             //axios is an easier way instead of fetch .. .then response.json().then

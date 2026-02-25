@@ -20,7 +20,7 @@ function App() {
     // The backend received 2 informations from the request: the type: get and the url path:/api/cart-items?expand=product
     // The type is also called http method (get,post,put,delete)
     // ?expand is a query parameter. it lets us add additional info to our request
-    const response = await axios.get('/api/cart-items?expand=product') 
+    const response = await axios.get('http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items?expand=product') 
     setCart(response.data);
   };
 

@@ -21,7 +21,7 @@ describe('HomePage component', () => {
         //Mocking the implementation means this fake fucntion will run instead of the real one when axios.get is called 
 
         axios.get.mockImplementation(async (urlPath) => {
-            if (urlPath === '/api/products') {
+            if (urlPath === 'http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/products') {
 
                 // The return value should match what the real axios.get returns
                 // Since it returns an object, we also return an object here
@@ -98,12 +98,12 @@ describe('HomePage component', () => {
         const addToCartButton2 = within(productContainers[1]).getByTestId('add-to-cart-button');
         await user.click(addToCartButton2);
 
-        expect(axios.post).toHaveBeenNthCalledWith(1, '/api/cart-items', {
+        expect(axios.post).toHaveBeenNthCalledWith(1, 'http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items', {
             productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
             quantity: 2
         });
 
-        expect(axios.post).toHaveBeenNthCalledWith(2, '/api/cart-items', {
+        expect(axios.post).toHaveBeenNthCalledWith(2, 'http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items', {
             productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
             quantity: 3
         });
