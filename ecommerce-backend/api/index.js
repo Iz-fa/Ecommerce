@@ -3,7 +3,7 @@ import cors from 'cors';
 import path from 'path';
 import serverless from 'serverless-http';
 import { fileURLToPath } from 'url';
-//import { sequelize } from './models/index.js';
+import { sequelize } from './models/index.js';
 import productRoutes from '../routes/products.js';
 import deliveryOptionRoutes from '../routes/deliveryOptions.js';
 import cartItemRoutes from '../routes/cartItems.js';
@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
 /* eslint-enable no-unused-vars */
 
 // Sync database and load default data if none exist
-//await sequelize.sync();
+await sequelize.sync();
 
 const productCount = await Product.count();
 if (productCount === 0) {
