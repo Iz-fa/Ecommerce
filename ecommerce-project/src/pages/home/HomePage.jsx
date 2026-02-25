@@ -24,7 +24,8 @@ export function HomePage({cart, loadCart}) {
 
         const fetchHomeData = async ()=>{ 
             const urlPath = search ? `https://ecommerce-backend-tawny-rho.vercel.app/api/products?search=${search}` : 'https://ecommerce-backend-tawny-rho.vercel.app/api/products';
-            const response = await axios.get(urlPath);   
+            const response = await axios.get(urlPath);  
+            console.log("please wait for data to load from backend"); 
             setProducts(response.data); 
             
             //axios is an easier way instead of fetch .. .then response.json().then
