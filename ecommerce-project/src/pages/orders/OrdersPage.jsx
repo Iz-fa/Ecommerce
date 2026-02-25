@@ -9,7 +9,7 @@ export function OrdersPage({ cart, loadCart }) {
 
     useEffect(() => {
         const fetchOrdersData = async ()=>{
-            const response = await axios.get('https://e-commerce-backend-xwcy.onrender.com/api/orders?expand=products');    
+            const response = await axios.get('https://ecommerce-backend-tawny-rho.vercel.app/api/orders?expand=products');    
             setOrders(response.data);
         };
         

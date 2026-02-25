@@ -11,7 +11,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
     useEffect(()=>{
         const fetchCheckoutData= async()=>{
-            const response = await axios.get('https://e-commerce-backend-xwcy.onrender.com/api/delivery-options?expand=estimatedDeliveryTime');
+            const response = await axios.get('https://ecommerce-backend-tawny-rho.vercel.app/api/delivery-options?expand=estimatedDeliveryTime');
             setDeliveryOptions(response.data);
         };
 
@@ -20,7 +20,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
     useEffect(() => {
         const fetchPaymentSummary = async()=>{
-            const response = await axios.get('https://e-commerce-backend-xwcy.onrender.com/api/payment-summary');
+            const response = await axios.get('https://ecommerce-backend-tawny-rho.vercel.app/api/payment-summary');
             setPaymentSummary(response.data);
         };
 

@@ -23,7 +23,7 @@ export function HomePage({cart, loadCart}) {
         //that is why we made a const being an async function and called that function
 
         const fetchHomeData = async ()=>{ 
-            const urlPath = search ? `https://e-commerce-backend-xwcy.onrender.com/api/products?search=${search}` : 'https://e-commerce-backend-xwcy.onrender.com/api/products';
+            const urlPath = search ? `https://ecommerce-backend-tawny-rho.vercel.app/api/products?search=${search}` : 'https://ecommerce-backend-tawny-rho.vercel.app/api/products';
             const response = await axios.get(urlPath);   
             setProducts(response.data); 
             

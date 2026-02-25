@@ -9,7 +9,7 @@ export function OrderDetailsGrid({order, loadCart}) {
         <div className="order-details-grid">
             {order.products.map((orderProduct) => {
                 const addToCart = async()=>{
-                    await axios.post('https://e-commerce-backend-xwcy.onrender.com/api/cart-items',{
+                    await axios.post('https://ecommerce-backend-tawny-rho.vercel.app/api/cart-items',{
                         productId: orderProduct.productId,
                         quantity: 1
                     });
@@ -19,7 +19,7 @@ export function OrderDetailsGrid({order, loadCart}) {
                 return (
                     <Fragment key={orderProduct.product.id}>
                         <div className="product-image-container">
-                            <img src={`https://e-commerce-backend-xwcy.onrender.com/${orderProduct.product.image}`} />
+                            <img src={`https://ecommerce-backend-tawny-rho.vercel.app/${orderProduct.product.image}`} />
                         </div>
 
                         <div className="product-details">

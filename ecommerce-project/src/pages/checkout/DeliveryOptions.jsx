@@ -16,7 +16,7 @@ export function DeliveryOptions({deliveryOptions, cartItem, loadCart}) {
                 }
 
                 const updateDeliveryOption = async()=>{
-                    await axios.put(`https://e-commerce-backend-xwcy.onrender.com/api/cart-items/${cartItem.productId}`,{
+                    await axios.put(`https://ecommerce-backend-tawny-rho.vercel.app/api/cart-items/${cartItem.productId}`,{
                         deliveryOptionId: deliveryOption.id
                     });
                     await loadCart();
