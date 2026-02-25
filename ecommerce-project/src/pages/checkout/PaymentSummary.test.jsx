@@ -89,7 +89,7 @@ describe('PaymentSummary component', () => {
     const placeOrderButton = screen.getByTestId('place-order-button');
     await user.click(placeOrderButton);
 
-    expect(axios.post).toHaveBeenCalledWith('https://e-commerce-backend-xwcy.onrender.com//api/orders');
+    expect(axios.post).toHaveBeenCalledWith('https://e-commerce-backend-xwcy.onrender.com/api/orders');
 
     expect(loadCart).toHaveBeenCalled();
 
