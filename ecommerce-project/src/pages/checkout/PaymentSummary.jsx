@@ -6,7 +6,7 @@ export function PaymentSummary({paymentSummary, loadCart}) {
     const navigate = useNavigate();
 
     const createOrder = async()=>{
-        await axios.post('http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/orders');
+        await axios.post('https://e-commerce-backend-xwcy.onrender.com//api/orders');
         await loadCart();
         navigate('/orders');
     };

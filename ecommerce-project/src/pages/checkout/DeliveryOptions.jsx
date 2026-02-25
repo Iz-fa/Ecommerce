@@ -16,7 +16,7 @@ export function DeliveryOptions({deliveryOptions, cartItem, loadCart}) {
                 }
 
                 const updateDeliveryOption = async()=>{
-                    await axios.put(`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items/${cartItem.productId}`,{
+                    await axios.put(`https://e-commerce-backend-xwcy.onrender.com//api/cart-items/${cartItem.productId}`,{
                         deliveryOptionId: deliveryOption.id
                     });
                     await loadCart();

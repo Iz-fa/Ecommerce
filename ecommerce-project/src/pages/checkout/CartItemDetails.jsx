@@ -8,7 +8,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
 
     const updateQuantity = async () => {
         if (isUpdatingQuantity) {
-            await axios.put(`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items/${cartItem.productId}`, {
+            await axios.put(`https://e-commerce-backend-xwcy.onrender.com//api/cart-items/${cartItem.productId}`, {
                 quantity: Number(quantity)
             });
             await loadCart();
@@ -19,7 +19,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
     };
 
     const deleteCartItem = async () => {
-        await axios.delete(`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/cart-items/${cartItem.productId}`);
+        await axios.delete(`https://e-commerce-backend-xwcy.onrender.com//api/cart-items/${cartItem.productId}`);
 
         await loadCart();
     };
@@ -43,7 +43,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
     return (
         <>
             <img className="product-image"
-                src={`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/${cartItem.product.image}`} />
+                src={`https://e-commerce-backend-xwcy.onrender.com//${cartItem.product.image}`} />
 
             <div className="cart-item-details">
                 <div className="product-name">

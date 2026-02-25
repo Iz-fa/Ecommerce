@@ -11,7 +11,7 @@ export function TrackingPage({ cart }) {
 
     useEffect(() => {
         const fetchTrackingData = async () => {
-            const response = await axios.get(`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/api/orders/${orderId}?expand=products`);
+            const response = await axios.get(`https://e-commerce-backend-xwcy.onrender.com//api/orders/${orderId}?expand=products`);
             setOrder(response.data);
 
         };
@@ -65,7 +65,7 @@ export function TrackingPage({ cart }) {
                         {orderProduct.quantity}
                     </div>
 
-                    <img className="product-image" src={`http://ecommerce-project-react-env.eba-9kp2yauw.us-east-1.elasticbeanstalk.com/${orderProduct.product.image}`} />
+                    <img className="product-image" src={`https://e-commerce-backend-xwcy.onrender.com//${orderProduct.product.image}`} />
 
                     <div className="progress-labels-container">
                         <div className={`progress-label ${isPreparing && 'current-status'}`}>
