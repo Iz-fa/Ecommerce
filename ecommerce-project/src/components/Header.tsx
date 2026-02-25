@@ -1,5 +1,6 @@
 import { NavLink, useNavigate, useSearchParams } from 'react-router'; //go to another page without reloading
 import { useState } from 'react';
+import type {CartItem} from '../types/cartItem';
 import CartIcon from '../assets/images/icons/cart-icon.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import LogoWhite from '../assets/images/logo-white.png';
@@ -15,11 +16,7 @@ import './Header.css';
 // This object has an array of objects {}[] in it called cart
 // we then set what properties each object has and gave them each their types
 type HeaderProps = {
-    cart: {
-        productId: string;
-        quantity: number;
-        deliveryOptionId: string;
-    }[];
+    cart: CartItem[];
 };
 
 export function Header({ cart }: HeaderProps) {

@@ -1,4 +1,4 @@
-export function formatMoney(amountCents: number){
+export function formatMoney(amountCents: number): string{
     if(amountCents < 0){
         amountCents = amountCents * -1;
         return `-$${(amountCents / 100).toFixed(2)}`;
