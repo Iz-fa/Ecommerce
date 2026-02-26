@@ -2,8 +2,13 @@ import {Link} from 'react-router';
 import CheckoutLockIcon from '../../assets/images/icons/checkout-lock-icon.png';
 import Logo from '../../assets/images/logo.png';
 import './CheckoutHeader.css';
+import type {CartItemType} from '../../types';
 
-export function CheckoutHeader({cart}){
+type  Props = {
+    cart: CartItemType[];
+};
+
+export function CheckoutHeader({cart}: Props){
     let totalQuantity=0;
 
     cart.forEach((cartItem)=>{

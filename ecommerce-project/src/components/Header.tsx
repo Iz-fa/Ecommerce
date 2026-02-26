@@ -1,10 +1,10 @@
 import { NavLink, useNavigate, useSearchParams } from 'react-router'; //go to another page without reloading
 import { useState } from 'react';
-import type {CartItem} from '../types/cartItem';
 import CartIcon from '../assets/images/icons/cart-icon.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import LogoWhite from '../assets/images/logo-white.png';
 import './Header.css';
+import type {CartItemType} from '../types';
 
 // In CSS having a space like this .header .orders-link
 // means to look inside the class .header (not necesssarily direct children)
@@ -15,11 +15,11 @@ import './Header.css';
 // in this type alias we gave it the value of an object 
 // This object has an array of objects {}[] in it called cart
 // we then set what properties each object has and gave them each their types
-type HeaderProps = {
-    cart: CartItem[];
+type Props = {
+    cart: CartItemType[];
 };
 
-export function Header({ cart }: HeaderProps) {
+export function Header({ cart }: Props) {
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();

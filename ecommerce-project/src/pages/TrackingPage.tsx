@@ -1,13 +1,18 @@
 import { Header } from '../components/Header';
 import { Link, useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import type { CartItemType, OrderType} from '../types';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import './TrackingPage.css';
 
-export function TrackingPage({ cart }) {
-    const { orderId, productId } = useParams();
-    const [order, setOrder] = useState(null);
+type Props = {
+    cart: CartItemType[];
+};
+
+export function TrackingPage({ cart }: Props) {
+    const { orderId, productId } = useParams<{ orderId: string; productId: string}>();
+    const [order, setOrder] = useState<OrderType| null>(null);
 
     useEffect(() => {
         const fetchTrackingData = async () => {
@@ -25,6 +30,7 @@ export function TrackingPage({ cart }) {
     const orderProduct = order.products.find((orderProduct) => {
         return orderProduct.productId === productId;
     });
+    if(!orderProduct) return null;
 
     const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
     const timePassedMs = dayjs().valueOf() - order.orderTimeMs;

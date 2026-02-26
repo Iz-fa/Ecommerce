@@ -1,8 +1,14 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { formatMoney } from "../../utils/money";
+import type {CartItemType} from '../../types';
 
-export function CartItemDetails({ cartItem, loadCart }) {
+type  Props = {
+    cartItem: CartItemType;
+    loadCart: ()=>Promise<void>;
+};
+
+export function CartItemDetails({ cartItem, loadCart }: Props) {
     const [quantity, setQuantity] = useState(cartItem.quantity);
     const [isUpdatingQuantity, setIsUpdatingQuantity] = useState(false);
 
@@ -24,11 +30,11 @@ export function CartItemDetails({ cartItem, loadCart }) {
         await loadCart();
     };
 
-    const UpdateQuantityInput = (event) => {
-        setQuantity(event.target.value);
+    const UpdateQuantityInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setQuantity(Number(event.target.value));
     };
 
-    const handleQuantityKeyDown = (event) => {
+    const handleQuantityKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         const keyPressed = event.key;
 
         if (keyPressed === 'Enter') {

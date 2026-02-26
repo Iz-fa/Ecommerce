@@ -2,9 +2,15 @@ import axios from 'axios';
 import { useState } from 'react';
 import { formatMoney } from '../../utils/money';
 import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
+import type {ProductType} from '../../types';
+
+type  Props = {
+    product: ProductType;
+    loadCart: ()=>Promise<void>;
+};
 
 
-export function Product({ product, loadCart }) {
+export function Product({ product, loadCart }: Props) {
     const [quantity, setQuantity] = useState(1);
     const [addedMessage, setAddedMessage] = useState(false);
 
@@ -21,7 +27,7 @@ export function Product({ product, loadCart }) {
             setAddedMessage(false);
         },2000);
     };
-    const selectQuantity = (event) => {    //This is a controlled input
+    const selectQuantity = (event: React.ChangeEvent<HTMLSelectElement>) => {    //This is a controlled input
         const quantitySelected = Number(event.target.value); //from string to number
         setQuantity(quantitySelected);
     };

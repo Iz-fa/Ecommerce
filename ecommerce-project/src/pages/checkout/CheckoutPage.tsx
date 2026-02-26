@@ -4,10 +4,16 @@ import {CheckoutHeader} from './CheckoutHeader';
 import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './PaymentSummary';
 import './CheckoutPage.css';
+import type {CartItemType, PaymentSummaryType, DeliveryOptionsType} from '../../types';
 
-export function CheckoutPage({ cart, loadCart }) {
-    const [deliveryOptions, setDeliveryOptions] = useState([]);
-    const [paymentSummary, setPaymentSummary] = useState(null);
+type  Props = {
+    cart: CartItemType[];
+    loadCart: ()=>Promise<void>;
+};
+
+export function CheckoutPage({ cart, loadCart }: Props) {
+    const [deliveryOptions, setDeliveryOptions] = useState<DeliveryOptionsType[]>([]);
+    const [paymentSummary, setPaymentSummary] = useState<PaymentSummaryType|null>(null);
 
     useEffect(()=>{
         const fetchCheckoutData= async()=>{
@@ -39,8 +45,9 @@ export function CheckoutPage({ cart, loadCart }) {
 
                 <div className="checkout-grid">
                     <OrderSummary cart ={cart} deliveryOptions={deliveryOptions} loadCart={loadCart} />
-
-                    <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart}/>
+                    {paymentSummary && (
+                        <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart}/>
+                    )}                    
                 </div>
             </div>
         </>

@@ -1,7 +1,12 @@
-import {Header} from '../components/Header'
-import './ErrorPage.css'
+import {Header} from '../components/Header';
+import type { CartItemType} from '../types';
+import './ErrorPage.css';
 
-export function ErrorPage({cart}){
+type Props = {
+    cart: CartItemType[];
+};
+
+export function ErrorPage({cart}: Props){
     return (
         <>
             <title>Page not found</title>

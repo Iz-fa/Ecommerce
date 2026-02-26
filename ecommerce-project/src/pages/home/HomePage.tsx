@@ -4,16 +4,21 @@ import {useSearchParams} from 'react-router';
 import { Header } from '../../components/Header';
 import {ProductsGrid} from './ProductsGrid';
 import LoadingSpinner from '../../assets/images/loading-spinner.gif';
-import './HomePage.css'
+import './HomePage.css';
+import type {CartItemType, ProductType} from '../../types';
 
 // Backend stores the data(normaly on a different computer) so the user's computer doesnt have to store all the
 // products on their computer(It fetches only the products it needs to display)
 
 // This also helps when adding an item to the cart, so when the user uses a different computer, the cart would
 // still have the items inside
+type  Props = {
+    cart: CartItemType[];
+    loadCart: ()=>Promise<void>;
+};
 
-export function HomePage({cart, loadCart}) {
-    const [products, setProducts] = useState([]);
+export function HomePage({cart, loadCart}: Props) {
+    const [products, setProducts] = useState<ProductType[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const search = searchParams.get('search');

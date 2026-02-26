@@ -1,8 +1,14 @@
 import axios from 'axios';
 import {useNavigate} from 'react-router';
 import { formatMoney } from "../../utils/money";
+import type {PaymentSummaryType} from '../../types';
 
-export function PaymentSummary({paymentSummary, loadCart}) {
+type  Props = {
+    paymentSummary: PaymentSummaryType;
+    loadCart: ()=>Promise<void>;
+};
+
+export function PaymentSummary({paymentSummary, loadCart}: Props) {
     const navigate = useNavigate();
 
     const createOrder = async()=>{

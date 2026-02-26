@@ -3,9 +3,15 @@ import { useState, useEffect} from 'react';
 import { Header } from '../../components/Header';
 import { OrdersGrid } from './OrdersGrid';
 import './OrdersPage.css';
+import type { CartItemType, OrderType} from '../../types';
 
-export function OrdersPage({ cart, loadCart }) {
-    const [orders, setOrders] = useState([]);
+type Props = {
+    cart: CartItemType[];
+    loadCart: ()=> Promise<void>;
+};
+
+export function OrdersPage({ cart, loadCart }:Props) {
+    const [orders, setOrders] = useState<OrderType[]>([]);
 
     useEffect(() => {
         const fetchOrdersData = async ()=>{

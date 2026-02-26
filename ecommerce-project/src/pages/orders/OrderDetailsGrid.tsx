@@ -2,9 +2,15 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import {Fragment} from 'react';
 import {Link} from 'react-router';
+import type {OrderType} from '../../types';
 import BuyAgainIcon from '../../assets/images/icons/buy-again.png';
 
-export function OrderDetailsGrid({order, loadCart}) {
+type Props = {
+    order: OrderType;
+    loadCart: ()=>Promise<void>;
+};
+
+export function OrderDetailsGrid({order, loadCart}: Props) {
     return (
         <div className="order-details-grid">
             {order.products.map((orderProduct) => {
