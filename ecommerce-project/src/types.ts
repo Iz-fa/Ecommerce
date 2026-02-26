@@ -17,6 +17,7 @@ interface ProductType {
       count: number;
       stars: number;
     };
+    keywords: string[];
 }
 
 interface OrderProductType {

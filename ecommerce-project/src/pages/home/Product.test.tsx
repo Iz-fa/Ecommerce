@@ -6,13 +6,14 @@ import { render, screen } from '@testing-library/react'; // render: renders a co
 import userEvent from '@testing-library/user-event'; // userEvent lets us simulate events(like clicking a button)
 import axios from 'axios';
 import { Product } from './Product';
+import type { ProductType } from '../../types';
 
 vi.mock('axios'); //mocking the entire axios package lets us use a fake version of axios
 
 describe('Product component', () => { 
-    let product;
-    let loadCart;
-    let user;
+    let product: ProductType;
+    let loadCart: ReturnType<typeof vi.fn>;
+    let user: ReturnType<typeof userEvent.setup>;
     //This is a test hook, there are others like afterEach,beforeAll,afterAll
     //It means before each test run the code inside it
     beforeEach(()=>{
@@ -80,7 +81,7 @@ describe('Product component', () => {
     it('selects quantity', async ()=>{
         render(<Product product ={product} loadCart={loadCart} />);
 
-        let quantitySelector= screen.getByTestId('product-quantity-container');
+        const quantitySelector= screen.getByTestId('product-quantity-container');
         expect(quantitySelector).toHaveValue('1');
 
         

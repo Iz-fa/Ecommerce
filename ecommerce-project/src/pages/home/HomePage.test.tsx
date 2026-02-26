@@ -12,15 +12,15 @@ import { HomePage } from './HomePage';
 vi.mock('axios');
 
 describe('HomePage component', () => {
-    let loadCart;
-    let user;
+    let loadCart: ReturnType<typeof vi.fn>;
+    let user: ReturnType<typeof userEvent.setup>;
 
     beforeEach(() => {
         loadCart = vi.fn();
 
         //Mocking the implementation means this fake fucntion will run instead of the real one when axios.get is called 
 
-        axios.get.mockImplementation(async (urlPath) => {
+        (axios.get as ReturnType<typeof vi.fn>).mockImplementation(async (urlPath:string) => {
             if (urlPath === 'https://e-commerce-backend-xwcy.onrender.com/api/products') {
 
                 // The return value should match what the real axios.get returns

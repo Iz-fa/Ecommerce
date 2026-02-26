@@ -4,13 +4,14 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, useLocation } from 'react-router';
 import { PaymentSummary } from './PaymentSummary';
+import type { PaymentSummaryType } from '../../types'; 
 
 vi.mock('axios');
 
 describe('PaymentSummary component', () => {
-  let paymentSummary;
-  let loadCart;
-  let user;
+  let paymentSummary: PaymentSummaryType;
+  let loadCart: ReturnType<typeof vi.fn>;
+  let user: ReturnType<typeof userEvent.setup>;
 
   beforeEach(() => {
     paymentSummary = {
