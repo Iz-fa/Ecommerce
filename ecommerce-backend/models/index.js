@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize';
-import sqlJsAsSqlite3 from 'sql.js-as-sqlite3';
 import fs from 'fs';
 
 
@@ -7,7 +6,7 @@ export let sequelize;
 
 sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: sqlJsAsSqlite3,
+  storage: 'database.sqlite',
   logging: false
 });
 
