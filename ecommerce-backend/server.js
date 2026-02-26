@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import serverless from 'serverless-http';
+//import serverless from 'serverless-http';
 import { fileURLToPath } from 'url';
 import { sequelize } from './models/index.js';
 import productRoutes from './routes/products.js';
@@ -21,7 +21,7 @@ import { defaultOrders } from './defaultData/defaultOrders.js';
 import fs from 'fs';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
 });
 /* eslint-enable no-unused-vars */
 
-// Sync database and load default data if none exist
+// Sync database and load default data
 await sequelize.sync();
 
 const productCount = await Product.count();
@@ -102,7 +102,7 @@ if (productCount === 0) {
 
 
 
-export default serverless(app);
+//export default serverless(app);
 
 // Start server
 app.listen(PORT, () => {
