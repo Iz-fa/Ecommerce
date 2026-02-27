@@ -32,7 +32,7 @@ Make sure you have the following installed on your machine:
 Open a terminal and run:
 ```bash
 git clone https://github.com/Iz-fa/Ecommerce.git
-cd Ecommerce/ecommerce-project
+cd ecommerce-project
 npm install
 npm run dev
 ```
