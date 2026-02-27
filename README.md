@@ -1,4 +1,4 @@
-# Ecommerce Web App
+# E-Commerce Web App
 A multi-page e-commerce simulation built with React, connected to a backend API.  
 The project focuses on frontend architecture, API integration, testing, and automated deployment.
 
